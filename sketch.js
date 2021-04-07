@@ -64,7 +64,7 @@ function draw(){
 
     
 SpawnAttack();
-spawnVillan()
+spawnVillan();
   
    if(foodGroup.isTouching(dolphin)){
      foodGroup.destroyEach();
@@ -76,14 +76,7 @@ spawnVillan()
     dolphinH = dolphinH-1
 
   }
-  if(dolphinH = 0){
-    foodGroup.destroyEach();
-    eg.destroyEach()
-    gameOver = createSprite(600,600);
-    gameover.addImage(gameOverI);
-    gameOver.scale = 0.9;
-    dolphin.velocityY = 0 
-  }
+
 
   drawSprites();
 
@@ -95,7 +88,7 @@ spawnVillan()
 
 function SpawnAttack(){
 if(frameCount % 160 === 0){
-   dolphinFood = createSprite(rando,rand,200,200);
+   dolphinFood = createSprite(800,rand,200,200);
   dolphinFood.addImage(dolphinFoodI);
   dolphinFood.scale = 0.4
   dolphinFood.velocityX = -3
@@ -106,11 +99,14 @@ if(frameCount % 160 === 0){
 }
 function spawnVillan(){
   if(frameCount % 200 === 0){
-    laserShooter = createSprite(rando,rand,200,200);
+
+    laserShooter = createSprite(1000,rand,200,200);
     laserShooter.addImage(laserShooterI);
     laserShooter.scale = 0.4;
     laserShooter.velocityX = -4;
-    laserShooter.lifetime = 300
+    laserShooter.lifetime = 300;
+
+
    eg.add(laserShooter)
   }
 }
