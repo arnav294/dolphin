@@ -86,7 +86,7 @@ function draw(){
   drawSprites();
   SpawnAttack();
   spawnVillan();
-  
+ 
 
 if(dolphinH == 0){
   textSize(70);
