@@ -16,7 +16,7 @@ dolphinI = loadImage("dolphin.png");
 dodoI = loadImage("dodo.png");
 dolphinFoodI = loadImage("budo.png");
 laserShooterI = loadImage("images.png");
-mi = loadImage("mediKit.png")
+
 
 }
 
@@ -125,18 +125,5 @@ function spawnVillan(){
 
 
    eg.add(laserShooter)
-  }
-}
-function medyKit(){
-  if(frameCount % 700 === 0){
-
-    mediKit = createSprite(1200,rando,200,200);
-    mediKit.y = random(100,800)
-    mediKit.addImage(mi);
-    mediKit.scale = 0.4;
-    mediKit.velocityX = -4;
-    mediKit.lifetime = 400;
-
-    xio.add(mediKit);
   }
 }
