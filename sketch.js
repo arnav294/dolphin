@@ -3,6 +3,7 @@ var dolphinFoodI;
 var foodGroup;
 var dolphinFood;
 var eg;
+var mediKit,mi,xio;
 
 var rand ,rando
 var score = 0;
@@ -11,27 +12,29 @@ var laserShooter,laserShooterI;
 var gameOver,gaveOverI
 
 function preload(){
-dolphinI = loadImage("dolphin.jpg");
+dolphinI = loadImage("dolphin.png");
 dodoI = loadImage("dodo.png");
 dolphinFoodI = loadImage("budo.png");
-laserShooterI = loadImage("images.png")
-gameOverI = loadImage("gameOver.png")
+laserShooterI = loadImage("images.png");
+mi = loadImage("mediKit.png")
+
 }
 
 function setup() {
-  createCanvas(displayWidth-100,displayHeight-10);
-  dodo = createSprite(displayHeight*1.0,displayWidth*0.29,200,200);
+  createCanvas(1400,800);
+  dodo = createSprite(1000,400,200,200);
   dodo.addImage(dodoI);
   dodo.scale = 5.3;
   
-  dolphin = createSprite(displayHeight*0.2,displayWidth*0.3);
+  dolphin = createSprite(200,400);
   dolphin.addImage(dolphinI);
   dolphin.scale = 0.6;
 
   rand = random(100,900);
-  rando = (600,1000);
+  rando = (400,800);
   foodGroup = createGroup();
   eg =  createGroup();
+  xio = createGroup();
   
 }
 
@@ -63,8 +66,7 @@ function draw(){
 
 
     
-SpawnAttack();
-spawnVillan();
+
   
    if(foodGroup.isTouching(dolphin)){
      foodGroup.destroyEach();
@@ -76,9 +78,22 @@ spawnVillan();
     dolphinH = dolphinH-1
 
   }
-
+ if(xio.isTouching(dolphin)){
+   dolphinH = dolphinH+1;
+   xio.destroyEach();
+ }
 
   drawSprites();
+  SpawnAttack();
+  spawnVillan();
+  medyKit();
+
+if(dolphinH == 0){
+  textSize(70);
+  text("khel khatam", 600,600);
+  dolphin.velocvityY = 0 ;
+  dolphinFood
+}
 
   textSize(30);
   text("score :"+score, 400,400);
@@ -87,26 +102,41 @@ spawnVillan();
 }
 
 function SpawnAttack(){
-if(frameCount % 160 === 0){
-   dolphinFood = createSprite(800,rand,200,200);
+if(frameCount % 220 === 0){
+   dolphinFood = createSprite(1200,rand,200,200);
+   dolphinFood.y = random(100,700)
   dolphinFood.addImage(dolphinFoodI);
   dolphinFood.scale = 0.4
-  dolphinFood.velocityX = -3
-  dolphinFood.lifetime = 300
+  dolphinFood.velocityX = -4;
+  dolphinFood.lifetime = 500;
 
   foodGroup.add(dolphinFood)
 }
 }
 function spawnVillan(){
-  if(frameCount % 200 === 0){
+  if(frameCount % 160 === 0){
 
-    laserShooter = createSprite(1000,rand,200,200);
+    laserShooter = createSprite(1200,rando,200,200);
+    laserShooter.y = random(100,800)
     laserShooter.addImage(laserShooterI);
     laserShooter.scale = 0.4;
     laserShooter.velocityX = -4;
-    laserShooter.lifetime = 300;
+    laserShooter.lifetime = 400;
 
 
    eg.add(laserShooter)
+  }
+}
+function medyKit(){
+  if(frameCount % 700 === 0){
+
+    mediKit = createSprite(1200,rando,200,200);
+    mediKit.y = random(100,800)
+    mediKit.addImage(mi);
+    mediKit.scale = 0.4;
+    mediKit.velocityX = -4;
+    mediKit.lifetime = 400;
+
+    xio.add(mediKit);
   }
 }
